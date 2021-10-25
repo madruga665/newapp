@@ -45,6 +45,7 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         body: Container(
+          color: Colors.deepOrangeAccent[200],
           child: Card(
             child: FutureBuilder(
                 future: fetch(),
@@ -61,22 +62,36 @@ class _MyAppState extends State<MyApp> {
                             const SliverGridDelegateWithMaxCrossAxisExtent(
                                 maxCrossAxisExtent: 200,
                                 childAspectRatio: 3 / 2,
-                                crossAxisSpacing: 20,
-                                mainAxisSpacing: 20),
+                                crossAxisSpacing: 30,
+                                mainAxisSpacing: 30),
                         itemCount: snapshot.data.length,
                         itemBuilder: (BuildContext context, index) {
                           return GridTile(
-                              child: Card(
-                            child: Column(
-                              children: [
-                                Image.network(
-                                  snapshot.data[index].img,
-                                  scale: 1.8,
+                              footer: Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    color: Colors.grey[800],
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Text(
+                                  snapshot.data[index].name,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      textBaseline: TextBaseline.alphabetic),
                                 ),
-                                Text(snapshot.data[index].name)
-                              ],
-                            ),
-                          ));
+                              ),
+                              child: Card(
+                                margin: EdgeInsets.all(10),
+                                color: Colors.deepOrangeAccent[200],
+                                child: Column(
+                                  children: [
+                                    Image.network(
+                                      snapshot.data[index].img,
+                                      scale: 1.8,
+                                    ),
+                                  ],
+                                ),
+                              ));
                         });
                   }
                 }),
