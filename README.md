@@ -1,4 +1,4 @@
-# 🤖️newapp
+# 🤖️ newapp
 
 ## 🚀️ App feito com flutter para fins de estudo!
 
