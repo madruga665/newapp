@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:newapp/services/api.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+
+List<Color> defaultRainbowColors = [
+  Colors.red,
+  Colors.orange,
+  Colors.yellow,
+  Colors.green,
+  Colors.blue,
+  Colors.indigo,
+  Colors.purple,
+];
 
 class Pokedex extends StatefulWidget {
   @override
@@ -25,9 +36,20 @@ class _PokedexState extends State<Pokedex> {
                 future: fetch(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.data == null) {
-                    return Container(
-                      child: Center(
-                        child: Text('Carregando...'),
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 100,
+                            child: LoadingIndicator(
+                              indicatorType: Indicator.lineScalePulseOut,
+                              colors: defaultRainbowColors,
+                              strokeWidth: 1,
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   } else {
