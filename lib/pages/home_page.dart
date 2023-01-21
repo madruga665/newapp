@@ -21,6 +21,12 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => Pokedex()));
               },
             ),
+            ElevatedButton(
+              child: Text('Lista de Tarefas'),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/todo-list');
+              },
+            ),
           ],
         ),
       ),
