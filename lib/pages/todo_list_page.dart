@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newapp/models/todo_model.dart';
-import 'package:newapp/repositories/todo_repository.dart';
+import 'package:newapp/controllers/todo_list_controller.dart';
 
 class TodoListPage extends StatefulWidget {
   const TodoListPage({Key? key}) : super(key: key);
@@ -10,11 +9,10 @@ class TodoListPage extends StatefulWidget {
 }
 
 class _TodoListPageState extends State<TodoListPage> {
-  final todoRepository = TodoRepository();
-  List<TodoModel> todos = [];
+  final todoListController = TodoListController();
 
   getAllTodos() async {
-    todos = await todoRepository.fetchTodos();
+    await todoListController.getAll();
   }
 
   @override
@@ -29,13 +27,21 @@ class _TodoListPageState extends State<TodoListPage> {
       appBar: AppBar(
         title: Text('Lista de Tarefas'),
       ),
-      body: ListView.builder(
-        itemCount: todos.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(todos[index].title),
-            tileColor: Colors.blue[700],
-            textColor: Colors.grey[300],
+      body: AnimatedBuilder(
+        animation: todoListController,
+        builder: (context, child) {
+          return ListView.builder(
+            itemCount: todoListController.todos.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text(todoListController.todos[index].title),
+                  tileColor: Colors.blue[700],
+                  textColor: Colors.grey[300],
+                ),
+              );
+            },
           );
         },
       ),

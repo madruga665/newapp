@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:newapp/models/todo_model.dart';
 
-class TodoRepository {
+class TodoListRepository {
   final dio = Dio();
 
   Future<List<TodoModel>> fetchTodos() async {
