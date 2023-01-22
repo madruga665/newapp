@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-class Pokemon {
+class PokemonModel {
   int id;
   String num;
   String name;
   String img;
 
-  Pokemon({
+  PokemonModel({
     required this.id,
     required this.num,
     required this.name,
@@ -22,8 +22,8 @@ class Pokemon {
     };
   }
 
-  factory Pokemon.fromMap(Map<String, dynamic> map) {
-    return Pokemon(
+  factory PokemonModel.fromMap(Map<String, dynamic> map) {
+    return PokemonModel(
       id: map['id'],
       num: map['num'],
       name: map['name'],
@@ -33,6 +33,6 @@ class Pokemon {
 
   String toJson() => json.encode(toMap());
 
-  factory Pokemon.fromJson(String source) =>
-      Pokemon.fromMap(json.decode(source));
+  factory PokemonModel.fromJson(String source) =>
+      PokemonModel.fromMap(json.decode(source));
 }

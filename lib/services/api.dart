@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:newapp/models/pokemon.dart';
+import 'package:newapp/models/pokemon_model.dart';
 
 Future fetch() async {
   String url =
@@ -8,7 +8,7 @@ Future fetch() async {
   final response = await http.get(Uri.parse(url));
   final decoded = jsonDecode(response.body)['pokemon'];
   final result = decoded
-      .map((data) => Pokemon(
+      .map((data) => PokemonModel(
           id: data['id'],
           name: data['name'],
           num: data['num'],
