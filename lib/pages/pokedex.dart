@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newapp/controllers/pokemon_controller.dart';
 import 'package:newapp/services/api.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
@@ -18,6 +19,18 @@ class Pokedex extends StatefulWidget {
 }
 
 class _PokedexState extends State<Pokedex> {
+  final pokemonController = PokemonController();
+
+  getAllPokemons() async {
+    await pokemonController.getAll();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getAllPokemons();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
