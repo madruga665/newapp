@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:newapp/pages/pokedex.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,8 +16,7 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               child: Text('Pokedex'),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Pokedex()));
+                Navigator.of(context).pushNamed('/pokedex');
               },
             ),
             ElevatedButton(
