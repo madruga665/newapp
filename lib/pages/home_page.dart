@@ -1,32 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:newapp/pages/pokedex.dart';
+import 'package:newapp/pages/todo_list_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int currentPage = 0;
+  final List<Widget> _pages = [
+    TodoListPage(),
+    Pokedex(),
+  ];
+
+  void onTabTapped(int index) {
+    setState(() {
+      currentPage = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Meu app de estudos Flutter'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              child: Text('Pokedex'),
-              onPressed: () {
-                Navigator.of(context).pushNamed('/pokedex');
-              },
-            ),
-            ElevatedButton(
-              child: Text('Lista de Tarefas'),
-              onPressed: () {
-                Navigator.of(context).pushNamed('/todo-list');
-              },
-            ),
-          ],
-        ),
+      body: _pages[currentPage],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentPage,
+        selectedItemColor: Colors.white,
+        type: BottomNavigationBarType.shifting,
+        unselectedItemColor: Colors.grey[800],
+        showUnselectedLabels: true,
+        elevation: 5,
+        onTap: onTabTapped,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Lista de Tarefas',
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Pokedex',
+            backgroundColor: Colors.orangeAccent,
+          ),
+        ],
       ),
     );
   }

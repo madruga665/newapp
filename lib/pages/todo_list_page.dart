@@ -25,6 +25,7 @@ class _TodoListPageState extends State<TodoListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Lista de Tarefas'),
       ),
       body: AnimatedBuilder(
